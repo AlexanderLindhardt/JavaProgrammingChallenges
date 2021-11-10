@@ -19,5 +19,6 @@ public class Challenge_3_3 {
         phoneNumber += lastThreeDigits;
 
         System.out.println(phoneNumber);
+
     }
 }
