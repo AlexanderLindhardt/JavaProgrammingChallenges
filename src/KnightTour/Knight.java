@@ -1,6 +1,10 @@
 package KnightTour;
 
-public class Knight extends Board{
+/**
+ * A class that represents a knight that has a position (row/col)
+ * and can make moves on a chess board.
+ */
+public class Knight {
     /** The knight's current row (from 0-7). */
     private int currentRow;
     /** The knight's current column (from 0-7). */
@@ -18,17 +22,13 @@ public class Knight extends Board{
         this.currentCol = initialCol;
         this.chessBoard = new Board();
         this.chessBoard.insertMove(this.currentRow, this.currentCol);
-        //System.out.println(chessBoard.toString());
-    }
-
-    public Board getChessBoard() {
-        return chessBoard;
     }
 
     /**
      * Moves the knight according to a given "move type" IF it's legal, also
-     * inserts the move on the chess board.
+     * inserts the move on the chess board. See the move types in the PNG.
      * @param move One of the eight possible moves a knight can make on a chess board.
+     * @return <code>false</code> if the move is not legal, <code>true</code> otherwise.
      */
     public boolean moveKnight(Move move) {
         if (isLegalMove(move)) {
@@ -36,7 +36,6 @@ public class Knight extends Board{
             this.currentCol += move.getMoveCol();
             chessBoard.insertMove(this.currentRow, this.currentCol);
             return true;
-            //System.out.println(chessBoard.toString());
         }
         return false;
     }
@@ -51,7 +50,7 @@ public class Knight extends Board{
         if (this.currentRow + move.getMoveRow() > 7 || this.currentRow + move.getMoveRow() < 0 ||
                 this.currentCol + move.getMoveCol() > 7 || this.currentCol + move.getMoveCol() < 0 ) // Not legal to move out of the board
             return false;
-        else return chessBoard.getSymbol(this.currentRow + move.getMoveRow(), this.currentCol + move.getMoveCol()) != NON_REACHABLE_SYMBOL; // Not allowed to move to same position twice
+        else return chessBoard.getSymbol(this.currentRow + move.getMoveRow(), this.currentCol + move.getMoveCol()) != Board.NON_REACHABLE_SYMBOL; // Not allowed to move to same position twice
     }
 
     /**
@@ -79,19 +78,24 @@ public class Knight extends Board{
     public boolean fullTour() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (chessBoard.getSymbol(i, j) == REACHABLE_SYMBOL)
+                if (chessBoard.getSymbol(i, j) == Board.REACHABLE_SYMBOL)
                     return false;
-
             }
-
         }
         return true;
     }
 
+    /**
+     * Gives the current row of the knight.
+     * @return the knights current row.
+     */
     public int getcurrentRow() {
         return currentRow;
     }
-
+    /**
+     * Gives the current column of the knight.
+     * @return the knights current column.
+     */
     public int getCurrentCol() {
         return currentCol;
     }
