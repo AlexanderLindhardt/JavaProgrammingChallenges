@@ -14,7 +14,7 @@ import java.util.Random;
 public class FindKnightTour {
 
     public static void main(String[] args) throws InterruptedException {
-
+        System.out.println("hej");
         Random rand = new Random();
         // A vector that holds the random initial position of the knight.
         int [] firstPos = new int[]{rand.nextInt(8),rand.nextInt(8)};
